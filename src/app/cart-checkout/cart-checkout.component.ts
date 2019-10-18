@@ -1,14 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cart-checkout',
   templateUrl: './cart-checkout.component.html'
 })
 export class CartCheckoutComponent implements OnInit {
-  subtotal: number = 20;
-  tax: number = 10;
-  total: number = 30;
-  discount: number = 5;
+  @Input() promoCode: string;
+  @Input() subtotal: number;
+  @Input() tax: number;
+  @Input() total: number;
+  @Input() discount: number;
+  pressPromoCode() {
+    if (this.promoCode.toLocaleLowerCase() === 'muathu') {
+      alert('Giam 50%');
+    }
+    console.log(this.promoCode);
+  }
   constructor() { }
 
   ngOnInit() {

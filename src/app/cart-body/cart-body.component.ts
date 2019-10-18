@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Product } from '../product.model';
 
@@ -7,30 +7,21 @@ import { Product } from '../product.model';
   templateUrl: './cart-body.component.html'
 })
 export class CartBodyComponent implements OnInit {
-  products: Product[] = [
-    {
-      id: 1,
-      name: 'Product 1',
-      image: 'https://cdn.pixabay.com/photo/2014/05/02/21/49/home-office-336373_1280.jpg',
-      description: 'may tinh 1',
-      price: 1000,
-      quantity: 5
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      image: 'https://cdn.pixabay.com/photo/2014/05/02/21/49/home-office-336373_1280.jpg',
-      description: 'may tinh 2',
-      price: 10000000,
-      quantity: 3
+  @Input() products: Product[];
+
+  removeProduct(productSP: Product) {
+    const r = confirm('Xác Nhận Xóa? Tên SP: ' + productSP.name);
+    if (r === true) {
+      const indexSanPham = this.products.findIndex(product => product.id === productSP.id);
+      if (indexSanPham !== -1) {
+        this.products.splice(indexSanPham, 1);
+        alert('Đã xóa tên ' + productSP.name + ' sản phẩm ' + productSP.id);
+      }
     }
-  ];
-  removeProduct(id: number) {
-    const indexId = this.products.findIndex(product => product.id === id);
-    if (indexId !== -1) {
-      this.products.splice(indexId, 1);
-    }
-    alert('Đã xoá ' + id);
+  }
+
+  changeQuantity(valueInput: string){
+    console.log(parseFloat(valueInput) + 1);
   }
   constructor() { }
 

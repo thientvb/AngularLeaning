@@ -1,20 +1,15 @@
 <!-- Toolbar -->
 <main>
   <header class="container">
-    <app-cart-header></app-cart-header>
+    <app-cart-header [numberItems]= '4'></app-cart-header>
   </header>
+
   <section class="container">
-    <app-cart-body></app-cart-body>
+    <app-cart-body [products]='products'></app-cart-body>
   </section>
 
   <section class="container">
-    <app-cart-checkout></app-cart-checkout>
+    <app-cart-checkout [promoCode]='promoCode' [subtotal]='subtotal' [tax]='tax' [total]='total' [discount]='discount'></app-cart-checkout>
   </section>
-
 
 </main>
-<script>
-  $("input").blur(function(){
-    alert("This input field has lost its focus.");
-  });
-</script>
